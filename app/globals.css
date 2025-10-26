@@ -24,3 +24,66 @@ section {
   scroll-margin-top: 40px;
 }
 
+/* loader */
+
+@layer utilities {
+  @keyframes rotate {
+    50% {
+      transform: rotate(360deg);
+    }
+
+    100% {
+      transform: rotate(720deg);
+    }
+  }
+
+  @keyframes shape1 {
+    60% {
+      transform: translate(-28px, -28px) scale(0.4);
+    }
+  }
+
+  @keyframes shape2 {
+    40% {
+      transform: translate(28px, -28px) scale(0.4);
+    }
+  }
+
+  @keyframes shape3 {
+    50% {
+      border-radius: 100%;
+      transform: scale(0.5) rotate(-45deg);
+    }
+
+    100% {
+      transform: scale(0.98) rotate(-45deg);
+    }
+  }
+
+  @keyframes shadow {
+    50% {
+      transform: translateX(-50%) scale(0.5);
+      border-color: #f2f2f2;
+    }
+  }
+
+  .animate-rotate {
+    animation: rotate 2.3s cubic-bezier(0.75, 0, 0.5, 1) infinite;
+  }
+
+  .animate-shape1 {
+    animation: shape1 2.3s cubic-bezier(0.75, 0, 0.5, 1) infinite;
+  }
+
+  .animate-shape2 {
+    animation: shape2 2.3s cubic-bezier(0.75, 0, 0.5, 1) infinite;
+  }
+
+  .animate-shape3 {
+    animation: shape3 2.3s cubic-bezier(0.75, 0, 0.5, 1) infinite;
+  }
+
+  .animate-shadow {
+    animation: shadow 2.3s cubic-bezier(0.75, 0, 0.5, 1) infinite;
+  }
+}

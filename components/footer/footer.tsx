@@ -4,20 +4,18 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-[#e5e5e5] text-gray-800 border-t-2 border-red-500">
-      <div className="container mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* Logo and about */}
+      <div className="container mx-auto px-4 py-10 flex gap-70">
         <div>
           <div className="flex items-center space-x-2 mb-4">
             <HouseHeart className="w-8 h-8 text-red-500" />
             <span className="text-2xl font-bold">Cozy Corner</span>
           </div>
-          <p className="text-gray-700">
+          <p className="text-gray-700 w-[280px]">
             Creating cozy, beautiful spaces with elegant home decor — from
             candles and vases to mirrors and plants.
           </p>
         </div>
 
-        {/* Quick links */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2">

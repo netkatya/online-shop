@@ -25,7 +25,7 @@ export default function OurFeatures() {
   ];
 
   return (
-    <section className="bg-[var(--background)] py-16 w-full">
+    <section className="bg-[var(--background)] py-16 w-full" id="features">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-12">Our Features</h2>
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-[#e5e5e5] text-gray-900 shadow-md h-[60px] border-b-2 border-red-500 p-2">
+    <header className="bg-[#e5e5e5] text-gray-900 h-[60px] border-b-2 border-red-500 p-2 sticky top-0 left-0 z-100">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
           <HouseHeart className="w-8 h-8 text-red-500" />
@@ -17,10 +17,10 @@ export default function Header() {
           <Link href="/products" className="font-bold hover:text-gray-400">
             Products
           </Link>
-          <Link href="/features" className="font-bold hover:text-gray-400">
+          <Link href="/#features" className="font-bold hover:text-gray-400">
             Our Features
           </Link>
-          <Link href="/location" className="font-bold hover:text-gray-400">
+          <Link href="/#location" className="font-bold hover:text-gray-400">
             Location
           </Link>
         </nav>

@@ -6,7 +6,7 @@ export default function OurStory() {
       <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center px-4">
         <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
           <Image
-            src="/img/our-story.webp"
+            src="/img/our-story1.webp"
             alt="Our story - cozy home"
             fill
             className="object-cover"

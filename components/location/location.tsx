@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Location() {
   return (
-    <section className="w-full py-16" id="location">
+    <section className="bg-[var(--background)] w-full py-18" id="location">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6 text-gray-800">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Location</h2>

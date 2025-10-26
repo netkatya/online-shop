@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function OurStory() {
   return (
-    <section className="w-full bg-gradient-to-t from-[#fff] to-[#e5e5e5] py-16">
+    <section className="w-full bg-gradient-to-t from-[#fff] to-[#e5e5e5] py-18">
       <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center px-4">
         <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
           <Image

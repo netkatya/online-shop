@@ -1,5 +1,6 @@
 import OurFeatures from "@/components/features/features";
 import Hero from "@/components/hero/hero";
+import Location from "@/components/location/location";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <main className="flex min-h-screen w-full min-w-[1440px] flex-col items-center justify-between sm:items-start">
         <Hero />
         <OurFeatures />
+        <Location />
       </main>
     </div>
   );

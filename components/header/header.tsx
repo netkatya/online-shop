@@ -11,13 +11,16 @@ export default function Header() {
         </Link>
 
         <nav className="space-x-6">
-          <Link href="/" className="hover:text-gray-700">
+          <Link href="/" className="font-bold hover:text-gray-400">
             Home
           </Link>
-          <Link href="/products" className="hover:text-gray-700">
+          <Link href="/products" className="font-bold hover:text-gray-400">
             Products
           </Link>
-          <Link href="/location" className="hover:text-gray-700">
+          <Link href="/features" className="font-bold hover:text-gray-400">
+            Our Features
+          </Link>
+          <Link href="/location" className="font-bold hover:text-gray-400">
             Location
           </Link>
         </nav>
@@ -26,7 +29,7 @@ export default function Header() {
           <li>
             <Link
               href="/auth/log-in"
-              className="border border-gray-300 px-[15px] py-[5px] rounded-md hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
+              className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
             >
               Sign In
             </Link>
@@ -34,7 +37,7 @@ export default function Header() {
           <li>
             <Link
               href="/auth/sign-up"
-              className="border border-gray-300 px-[15px] py-[5px] rounded-md hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
+              className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
             >
               Sign Up
             </Link>

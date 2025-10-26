@@ -15,7 +15,7 @@ export default function Hero() {
         <p className="text-lg md:text-2xl mb-6">
           Stylish products for your home and interior
         </p>
-        <button className="bg-white text-black font-semibold px-6 py-3 rounded hover:bg-gray-200 transition">
+        <button className="bg-white text-red-500 font-semibold px-6 py-3 rounded hover:bg-gray-200 transition">
           Shop Now
         </button>
       </div>

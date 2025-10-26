@@ -17,13 +17,13 @@ export default function Header() {
             Products
           </a>
           <a
-            href="/log-in"
+            href="/auth/log-in"
             className="border border-gray-300 px-[15px] py-[5px] rounded-md hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
           >
             Sign In
           </a>
           <a
-            href="/sign-up"
+            href="/auth/sign-up"
             className="border border-gray-300 px-[15px] py-[5px] rounded-md hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
           >
             Sign Up

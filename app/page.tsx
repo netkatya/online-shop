@@ -1,4 +1,4 @@
-import OurFeatures from "@/components/features/features";
+import OurFeatures from "@/components/features/promotions";
 import Hero from "@/components/hero/hero";
 import Location from "@/components/location/location";
 import OurStory from "@/components/ourStory/ourStory";

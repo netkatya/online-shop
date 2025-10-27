@@ -51,7 +51,7 @@ export default function ProductsPage() {
   }, []);
 
   useEffect(() => {
-    setCurrentPage(1); // сброс страницы при смене фильтра или поиска
+    setCurrentPage(1);
     loadProducts();
   }, [selectedCategory, search]);
 
@@ -59,7 +59,6 @@ export default function ProductsPage() {
     loadProducts();
   }, [currentPage]);
 
-  // Локальная сортировка по цене или имени
   const sortedProducts = [...products].sort((a, b) => {
     if (sortBy === "priceAsc") return a.price - b.price;
     if (sortBy === "priceDesc") return b.price - a.price;
@@ -73,9 +72,9 @@ export default function ProductsPage() {
           Products
         </h1>
 
-        {/* Фильтры и поиск */}
+        {/* filter and search */}
         <div className="flex flex-col md:flex-row md:justify-between items-center mb-6 gap-4">
-          {/* Поиск */}
+          {/* search  */}
           <input
             type="text"
             placeholder="Search products..."
@@ -84,7 +83,7 @@ export default function ProductsPage() {
             className="px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-400 outline-none w-full md:w-1/3"
           />
 
-          {/* Выпадающий список категорий */}
+          {/* categories */}
           <div>
             <select
               value={selectedCategory}
@@ -99,7 +98,7 @@ export default function ProductsPage() {
             </select>
           </div>
 
-          {/* Сортировка */}
+          {/* sort */}
           <div>
             <select
               value={sortBy}
@@ -115,7 +114,7 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {/* Сетка товаров */}
+        {/* products */}
         {loading ? (
           <p className="text-center text-gray-500 mt-10">Loading products...</p>
         ) : (
@@ -155,7 +154,7 @@ export default function ProductsPage() {
           </div>
         )}
 
-        {/* Пагинация */}
+        {/* pagination */}
         <div className="flex justify-center mt-8 gap-2">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button

@@ -44,7 +44,7 @@ export default function Header() {
           </li>
         </ul> */}
         <div className="flex items-center space-x-2">
-          <User className="w-5 h-5 text-red-700" />
+          <User className="w-6 h-6 text-red-500" />
           <Link href="/account" className="font-bold hover:text-gray-400">
             My Account
           </Link>

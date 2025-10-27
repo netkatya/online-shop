@@ -1,4 +1,4 @@
-import { HouseHeart, ShoppingBasket } from "lucide-react";
+import { HouseHeart, ShoppingBasket, User } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {
@@ -25,7 +25,7 @@ export default function Header() {
           </Link>
         </nav>
 
-        <ul className="flex space-x-2">
+        {/* <ul className="flex space-x-2">
           <li>
             <Link
               href="/sign-in"
@@ -42,8 +42,13 @@ export default function Header() {
               Sign Up
             </Link>
           </li>
-        </ul>
-
+        </ul> */}
+        <div className="flex items-center space-x-2">
+          <User className="w-5 h-5 text-red-700" />
+          <Link href="/account" className="font-bold hover:text-gray-400">
+            My Account
+          </Link>
+        </div>
         <div>
           <Link
             href="/basket"

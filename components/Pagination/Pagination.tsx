@@ -16,8 +16,8 @@ export default function Pagination({
       marginPagesDisplayed={1}
       onPageChange={(data) => setCurrentPage(data.selected + 1)}
       forcePage={currentPage - 1}
-      containerClassName="flex justify-center mt-8 gap-2"
-      activeClassName="bg-red-500 text-white border-red-500"
+      containerClassName="flex justify-center items-center gap-2 mt-10 select-none"
+      activeClassName="!bg-red-500 !text-white !border-red-500 shadow-lg"
       nextLabel="→"
       previousLabel="←"
     />

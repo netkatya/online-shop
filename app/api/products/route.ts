@@ -5,16 +5,16 @@ import { isAxiosError } from "axios";
 
 export async function GET(request: NextRequest) {
   try {
-    const cookieStore = cookies();
+    // const cookieStore = cookies();
     const search = request.nextUrl.searchParams.get("search") ?? "";
     const page = Number(request.nextUrl.searchParams.get("page") ?? 1);
     const rawCategory = request.nextUrl.searchParams.get("category") ?? "";
     const category = rawCategory === "All" ? "" : rawCategory;
 
-    const cookieHeader = cookieStore
-      .getAll()
-      .map((c) => `${c.name}=${c.value}`)
-      .join("; ");
+    // const cookieHeader = cookieStore
+    //   .getAll()
+    //   .map((c) => `${c.name}=${c.value}`)
+    //   .join("; ");
 
     const res = await api("/products", {
       params: {
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
         perPage: 12,
         ...(category && { category }),
       },
-      headers: { Cookie: cookieHeader },
+      // headers: { Cookie: cookieHeader },
     });
 
     return NextResponse.json(res.data, { status: res.status });

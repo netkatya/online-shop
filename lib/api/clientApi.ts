@@ -3,11 +3,10 @@ import { isAxiosError } from "axios";
 import { nextServer } from "./api";
 
 export interface FetchProductsResponse {
-  products: Product[];
+  data: Product[];
   totalPages: number;
 }
 
-const DEFAULT_CATEGORIES = ["vases", "mirrors", "plants", "clocks", "candles"];
 
 export async function fetchProductsClient(
   search = "",
@@ -38,17 +37,6 @@ export async function fetchProductsClient(
   }
 }
 
-export async function getCategoriesClient(): Promise<string[]> {
-  try {
-    const res = await fetchProductsClient();
-    const categoriesFromProducts: string[] = Array.from(
-      new Set(res.products.map((product) => product.category))
-    );
-    return Array.from(
-      new Set([...DEFAULT_CATEGORIES, ...categoriesFromProducts])
-    );
-  } catch (error) {
-    console.error("Cannot fetch categories:", error);
-    return DEFAULT_CATEGORIES;
-  }
+export function getCategories(): string[] {
+ return ["vases", "mirrors", "plants", "clocks", "candles"]
 }

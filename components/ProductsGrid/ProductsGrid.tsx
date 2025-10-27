@@ -37,7 +37,11 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
               <h2 className="text-lg font-semibold text-gray-800 h-[40px]">
                 {product.name}
               </h2>
+
               <p className="text-red-500 font-bold mt-2">£{product.price}</p>
+              <p className="text-[14px] text-gray-500 mt-2">
+                {product.description}
+              </p>
             </div>
           </div>
 

@@ -103,9 +103,12 @@ export default function CartPage() {
                 <span>Total</span>
                 <span>£{subtotal.toFixed(2)}</span>
               </div>
-              <button className="w-full mt-6 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition">
+              <Link
+                href="/basket/check-out"
+                className="flex justify-center w-full mt-6 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition"
+              >
                 Proceed to Checkout
-              </button>
+              </Link>
             </div>
           </div>
         )}

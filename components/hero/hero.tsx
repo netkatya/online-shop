@@ -16,7 +16,7 @@ export default function Hero() {
         </p>
         <Link
           href="/products"
-          className="bg-white text-red-500 text-xl font-bold px-10 py-3 rounded hover:bg-gray-200 transition"
+          className="bg-white text-red-500 text-xl font-semibold px-10 py-3 rounded hover:bg-gray-200 transition"
         >
           Shop Now
         </Link>

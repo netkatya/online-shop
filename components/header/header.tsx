@@ -28,7 +28,7 @@ export default function Header() {
         <ul className="flex space-x-2">
           <li>
             <Link
-              href="/auth/log-in"
+              href="/sign-in"
               className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
             >
               Sign In
@@ -36,7 +36,7 @@ export default function Header() {
           </li>
           <li>
             <Link
-              href="/auth/sign-up"
+              href="/sign-up"
               className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
             >
               Sign Up

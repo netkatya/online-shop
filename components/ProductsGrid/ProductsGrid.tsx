@@ -33,7 +33,7 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
                 className="object-cover"
               />
             </div>
-            <div className="p-4 flex flex-col gap-2">
+            <div className="p-2 flex flex-col gap-2">
               <h2 className="text-lg font-semibold text-gray-800 h-[40px]">
                 {product.name}
               </h2>

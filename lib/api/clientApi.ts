@@ -7,7 +7,6 @@ export interface FetchProductsResponse {
   totalPages: number;
 }
 
-
 export async function fetchProductsClient(
   search = "",
   page = 1,
@@ -38,5 +37,5 @@ export async function fetchProductsClient(
 }
 
 export function getCategories(): string[] {
- return ["vases", "mirrors", "plants", "clocks", "candles"]
+  return ["Vases", "Mirrors", "Plants", "Clocks", "Candles"];
 }

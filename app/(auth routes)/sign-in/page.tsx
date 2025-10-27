@@ -1,14 +1,46 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useAuthStore } from "@/lib/store/authStore";
+
+import { login } from "@/lib/api/clientApi";
+import { ApiError, LoginRequest } from "@/types/auth";
 import Link from "next/link";
 
 export default function SignInPage() {
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const setUser = useAuthStore((state) => state.setUser);
+
+  const handleSubmit = async (formData: FormData) => {
+    try {
+      const formValues = Object.fromEntries(formData) as LoginRequest;
+      const res = await login(formValues);
+      if (res) {
+        setUser(res);
+        router.push("/profile");
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (error) {
+      setError(
+        (error as ApiError).response?.data?.error ??
+          (error as ApiError).message ??
+          "Oops... some error"
+      );
+    }
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#f3f3f3] to-[#e5e5e5]">
+    <section className="min-h-screen flex items-center justify-center bg-linear-to-r from-[#f3f3f3] to-[#e5e5e5]">
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md mx-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Sign In
         </h1>
 
-        <form className="space-y-5">
+        <form className="space-y-5" action={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -19,6 +51,7 @@ export default function SignInPage() {
             <input
               type="email"
               id="email"
+              name="email"
               required
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
               placeholder="you@example.com"
@@ -35,6 +68,7 @@ export default function SignInPage() {
             <input
               type="password"
               id="password"
+              name="password"
               required
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
               placeholder="••••••••"
@@ -70,6 +104,11 @@ export default function SignInPage() {
           </Link>
         </div>
       </div>
+      {error && (
+        <p className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          {error}
+        </p>
+      )}
     </section>
   );
 }

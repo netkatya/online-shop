@@ -20,9 +20,6 @@ export async function fetchProductById(id: string): Promise<Product> {
   }
 }
 export const checkServerSession = async (cookieStore: RequestCookies) => {
-  // --- ВИПРАВЛЕНО ---
-  // Вручну збираємо рядок cookies, оскільки request.cookies.toString() не існує.
-  // Ми передаємо тільки ті токени, які потрібні бекенду.
   const accessToken = cookieStore.get('accessToken')?.value;
   const refreshToken = cookieStore.get('refreshToken')?.value;
 
@@ -32,7 +29,6 @@ export const checkServerSession = async (cookieStore: RequestCookies) => {
   
   const res = await nextServer.get('/auth/session', {
     headers: {
-      // Використовуємо зібраний рядок
       Cookie: cookieString,
     },
   });
@@ -48,23 +44,17 @@ interface CookieOptions {
   secure?: boolean;
 }
 
-/**
- * Функція для встановлення 'Set-Cookie' хедера, отриманого від бекенду,
- * на відповідь (response), яку побачить клієнт.
- */
+
 export function setCookiesOnResponse(response: NextResponse, setCookie: string | string[]) {
   const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
 
   for (const cookieStr of cookieArray) {
-    // parse тут приходить з `import { parse } from 'cookie';`
     const parsed = parse(cookieStr);
     
-    // Беремо ім'я та значення cookie.
-    // Перший ключ в об'єкті parsed - це і є ім'я cookie.
     const cookieName = Object.keys(parsed)[0];
     const cookieValue = parsed[cookieName];
 
-    // Решта ключів - це опції
+
     const options: CookieOptions = {
       expires: parsed.Expires ? new Date(parsed.Expires) : undefined,
       path: parsed.Path,

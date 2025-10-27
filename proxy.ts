@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkServerSession, setCookiesOnResponse } from './lib/api/serverApi';
 
-// Використовуємо ваші нові маршрути
 const publicRoutes = ["/sign-in", "/sign-up"];
 const privateRoutes = ["/basket", "/profile"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const requestCookies = request.cookies;
@@ -18,14 +17,10 @@ export async function middleware(request: NextRequest) {
   if (!accessToken) {
     if (refreshToken) {
       try {
-        // --- ВИПРАВЛЕНО ---
-        // Передаємо request.cookies (тип ReadonlyRequestCookies),
-        // наша checkServerSession тепер це обробляє коректно.
         const data = await checkServerSession(requestCookies);
         const setCookie = data.headers['set-cookie'];
 
         if (setCookie) {
-          // Сесія успішно оновлена
           if (isPublicRoute) {
             const response = NextResponse.redirect(new URL('/', request.url));
             return setCookiesOnResponse(response, setCookie);
@@ -36,13 +31,9 @@ export async function middleware(request: NextRequest) {
           }
         }
       } catch (error) {
-        // Помилка оновлення сесії
         console.error("Помилка оновлення сесії в middleware:", error);
-        // Продовжуємо, ніби refreshToken не було
       }
     }
-
-    // Якщо refreshToken або сесії немає (або оновлення не вдалось):
     if (isPublicRoute) {
       return NextResponse.next();
     }
@@ -63,6 +54,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Matcher також виглядає коректно
   matcher: ["/sign-in", "/sign-up", "/basket/:path*", "/profile/:path*"],
 };

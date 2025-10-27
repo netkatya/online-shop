@@ -1,6 +1,8 @@
 import { Product } from "@/types/products";
 import { isAxiosError } from "axios";
 import { nextServer } from "./api";
+import { LoginRequest, RegisterRequest } from "@/types/auth";
+import { User } from "@/types/user";
 
 export interface FetchProductsResponse {
   data: Product[];
@@ -52,4 +54,12 @@ export async function fetchProductById(id: string): Promise<Product> {
     }
     throw new Error("Fetching product failed");
   }
+}
+export const register = async (data: RegisterRequest) => {
+    const res = await nextServer.post<User>('/auth/register', data)
+    return res.data
+}
+export const login = async (data: LoginRequest) => {
+    const res = await nextServer.post<User>('/auth/login', data)
+    return res.data
 }

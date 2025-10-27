@@ -9,7 +9,7 @@ async function ProductsPage() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["products"],
-    queryFn: () => fetchProductsClient("", 1, 8),
+    queryFn: () => fetchProductsClient("", 1, 8, "All"),
   });
   return (
     <section className="min-h-screen py-10 bg-gray-100">

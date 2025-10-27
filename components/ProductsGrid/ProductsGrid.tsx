@@ -19,7 +19,7 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
             alt={product.name}
             className="w-full h-48 object-cover"
             height="48"
-            width="48"
+            width="192"
           ></Image>
           <div className="p-4">
             <h2 className="text-lg font-semibold text-gray-800">

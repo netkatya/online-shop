@@ -47,7 +47,7 @@ export default function Header() {
         <div>
           <Link
             href="/basket"
-            className="bg-gray-300 hover:bg-gray-400 w-[40px] px-2 py-2 rounded-md flex items-center"
+            className="bg-gray-300 hover:bg-gray-400 w-10 px-2 py-2 rounded-md flex items-center"
           >
             <ShoppingBasket className="w-6 h-6 text-red-500" />
           </Link>

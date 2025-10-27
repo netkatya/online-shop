@@ -30,7 +30,7 @@ export default function OurPromotions() {
       id="promotions"
     >
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">Our Promotions</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12">Promotions</h2>
 
         <div className="flex gap-8 flex-wrap justify-center">
           {promotions.map((promo, index) => (

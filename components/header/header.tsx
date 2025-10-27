@@ -17,8 +17,8 @@ export default function Header() {
           <Link href="/products" className="font-bold hover:text-gray-400">
             Products
           </Link>
-          <Link href="/#features" className="font-bold hover:text-gray-400">
-            Our Features
+          <Link href="/#promotions" className="font-bold hover:text-gray-400">
+            Promotions
           </Link>
           <Link href="/#location" className="font-bold hover:text-gray-400">
             Location
@@ -28,7 +28,7 @@ export default function Header() {
         <ul className="flex space-x-2">
           <li>
             <Link
-              href="/auth/log-in"
+              href="/sign-in"
               className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
             >
               Sign In
@@ -36,7 +36,7 @@ export default function Header() {
           </li>
           <li>
             <Link
-              href="/auth/sign-up"
+              href="/sign-up"
               className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
             >
               Sign Up

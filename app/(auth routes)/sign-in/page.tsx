@@ -74,6 +74,11 @@ export default function SignInPage() {
               placeholder="••••••••"
             />
           </div>
+          {error && (
+            <p className="text-3xl font-bold text-gray-800 mb-6 text-center">
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"
@@ -104,11 +109,6 @@ export default function SignInPage() {
           </Link>
         </div>
       </div>
-      {error && (
-        <p className="text-3xl font-bold text-gray-800 mb-6 text-center">
-          {error}
-        </p>
-      )}
     </section>
   );
 }

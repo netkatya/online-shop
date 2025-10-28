@@ -33,11 +33,6 @@ export default function SignUpPage() {
   };
   return (
     <section className="min-h-screen flex items-center justify-center bg-linear-to-r from-[#f3f3f3] to-[#e5e5e5]">
-      {error && (
-        <p className="text-3xl font-bold text-gray-800 mb-6 text-center">
-          {error}
-        </p>
-      )}
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md mx-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Sign Up
@@ -77,6 +72,11 @@ export default function SignUpPage() {
               placeholder="••••••••"
             />
           </div>
+          {error && (
+            <p className="text-3xl font-bold text-gray-800 mb-6 text-center">
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"

@@ -16,6 +16,7 @@ export default function Hero() {
         </p>
         <Link
           href="/products"
+          aria-label="to shop"
           className="bg-white text-red-500 text-xl font-semibold px-10 py-3 rounded hover:bg-gray-200 transition"
         >
           Shop Now

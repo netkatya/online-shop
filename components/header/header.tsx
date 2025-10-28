@@ -50,6 +50,7 @@ export default function Header() {
 
         {/* Burger Menu (Mobile) */}
         <button
+          aria-label="open menu"
           className="md:hidden focus:outline-none z-50"
           onClick={() => setMenuOpen(!menuOpen)}
         >
@@ -124,7 +125,7 @@ export default function Header() {
           <Link
             href="/basket"
             className="bg-gray-300 hover:bg-gray-400 w-12 px-3 py-3 rounded-md flex items-center justify-center mt-4"
-            aria-label="open memu"
+            aria-label="to basket"
             onClick={() => setMenuOpen(false)}
           >
             <ShoppingBasket className="w-6 h-6 text-red-500" />

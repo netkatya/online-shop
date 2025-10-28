@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { HouseHeart } from "lucide-react";
 
 export default function Checkout() {
   const [success, setSuccess] = useState(false);

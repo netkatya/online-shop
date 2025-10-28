@@ -7,7 +7,7 @@ import Sorting from "@/components/Sorting/Sorting";
 import Categories from "@/components/Categories/Categories";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
-import SearchBox from "@/components/SearchBox/SearchBox";
+// import SearchBox from "@/components/SearchBox/SearchBox";
 export default function ProductsClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"priceAsc" | "priceDesc" | "name">(

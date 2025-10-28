@@ -39,7 +39,7 @@ export async function fetchProductsClient(
 }
 
 export function getCategories(): string[] {
-  return ["Vases", "Mirrors", "Plants", "Clocks", "Candles"];
+  return ["vases", "mirrors", "plants", "clocks", "candles"];
 }
 
 export async function fetchProductById(id: string): Promise<Product> {

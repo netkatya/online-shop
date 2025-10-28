@@ -55,8 +55,8 @@ export default function ProductsClient() {
   return (
     <div>
       <div className="flex flex-col md:flex-row md:justify-between items-center mb-6 gap-4">
-        {/* Поиск */}
-        <SearchBox value={search} onChange={handleChange} />
+        {/* Поиск
+        <SearchBox value={search} onChange={handleChange} /> */}
         {/* Выпадающий список категорий */}
         <Categories
           selectedCategory={selectedCategory}

@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import ProductDetailsClient from "./productDetails.client";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 import { fetchProductById } from "@/lib/api/serverApi";
 
 interface ProductPageProps {

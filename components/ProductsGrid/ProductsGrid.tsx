@@ -1,64 +1,71 @@
+"use client";
+
 import { Product } from "@/types/products";
 import { Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+
+import { useRouter } from "next/navigation";
 
 interface ProductsGridInt {
   products: Product[];
 }
 
 export default function ProductsGrid({ products }: ProductsGridInt) {
+  const router = useRouter();
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       {products.map((product) => (
         <div
           key={product._id}
-          className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+          className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition flex flex-col"
         >
-          <Image
-            src={product.image}
-            alt={product.name}
-            className="w-full h-76 object-cover"
-            height="80"
-            width="192"
-          ></Image>
-          <div className="p-4">
-            <h2 className="text-lg font-semibold text-gray-800">
-              {product.name}
-            </h2>
-            <p className="text-red-500 font-bold mt-2">${product.price}</p>
-            <p className="text-gray-600 text-sm mt-1">{product.category}</p>
-            <p className="text-gray-500 text-sm mt-2 line-clamp-2">
-              {product.description}
-            </p>
-            <div className="flex items-center justify-between">
-              <Link
-                href={`/products/${product._id}`}
-                className="mt-3 inline-block text-red-500 hover:underline"
-              >
-                View Details
-              </Link>
-
-              <div className="flex items-center gap-2">
-                <button
-                  size="icon"
-                  variant="ghost"
-                  className="flex justify-center items-center border border-red-500 h-[30px] w-[50px] rounded-md hover:bg-gray-100"
-                  onClick={() => console.log("Add to favorites:", product._id)}
-                >
-                  <Heart className="w-5 h-5 text-red-500" />
-                </button>
-
-                <button
-                  size="icon"
-                  variant="ghost"
-                  className="flex justify-center items-center border border-red-500 h-[30px] w-[50px] rounded-md hover:bg-gray-100"
-                  onClick={() => console.log("Add to cart:", product._id)}
-                >
-                  <ShoppingCart className="w-5 h-5 text-gray-800" />
-                </button>
-              </div>
+          {/* Clickable area */}
+          <div
+            className="cursor-pointer"
+            onClick={() => router.push(`/products/${product._id}`)}
+          >
+            <div className="w-full h-70 relative">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover"
+              />
             </div>
+            <div className="p-2 flex flex-col gap-2">
+              <h2 className="text-lg font-semibold text-gray-800 h-[40px]">
+                {product.name}
+              </h2>
+
+              <p className="text-red-500 font-bold mt-2">£{product.price}</p>
+              <p className="text-[14px] text-gray-500 mt-2">
+                {product.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="p-4 flex gap-4 justify-center">
+            <button
+              className="flex justify-center items-center h-[30px] w-[80px] rounded-lg 
+              border border-red-400 bg-gradient-to-b from-white to-red-50 
+              shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
+              active:scale-95 transition-all duration-200"
+              onClick={() => console.log("Add to favorites:", product._id)}
+            >
+              <Heart className="w-5 h-5 text-red-500" />
+            </button>
+
+            <button
+              className="flex justify-center items-center h-[30px] w-[80px] rounded-lg 
+              border border-red-400 bg-gradient-to-b from-white to-red-50 
+              shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
+              active:scale-95 transition-all duration-200"
+              onClick={() => console.log("Add to cart:", product._id)}
+            >
+              <ShoppingCart className="w-5 h-5 text-gray-800" />
+            </button>
           </div>
         </div>
       ))}

@@ -79,10 +79,16 @@ function ProductContent({ productId }: { productId: string }) {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="w-full sm:flex-1 px-6 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-400 transition">
+            <button
+              className="w-full sm:flex-1 px-6 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-400 transition"
+              aria-label="add to favourites"
+            >
               🛒 Add to Cart
             </button>
-            <button className="w-full sm:flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition">
+            <button
+              className="w-full sm:flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition"
+              aria-label="add to basket"
+            >
               ❤️ Add to Favorites
             </button>
           </div>

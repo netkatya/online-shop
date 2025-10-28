@@ -48,6 +48,7 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
           {/* Buttons */}
           <div className="p-4 flex gap-4 justify-center">
             <button
+              aria-label="add to favourites"
               className="flex justify-center items-center h-[30px] w-[80px] rounded-lg 
               border border-red-400 bg-gradient-to-b from-white to-red-50 
               shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
@@ -58,6 +59,7 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
             </button>
 
             <button
+              aria-label="add to basket"
               className="flex justify-center items-center h-[30px] w-[80px] rounded-lg 
               border border-red-400 bg-gradient-to-b from-white to-red-50 
               shadow-md hover:shadow-lg hover:from-red-50 hover:to-white

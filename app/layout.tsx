@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   description: "Stylish products for your home and interior",
   openGraph: {
     type: "website",
-    url: "https://yourwebsite.com", // <-- replace with your domain
+    url: "https://online-shop-chi-flame.vercel.app",
     title: "Cozy Corner",
     description: "Stylish products for your home and interior",
     images: [
       {
-        url: "https://yourwebsite.com/img/living-room.webp", // <-- hero image
+        url: "https://online-shop-chi-flame.vercel.app/img/living-room.webp",
         width: 1200,
         height: 630,
         alt: "Cozy Corner - Stylish home products",
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@yourTwitterHandle", // <-- your Twitter handle
+    site: "@yourTwitterHandle",
     title: "Cozy Corner",
     description: "Stylish products for your home and interior",
-    images: ["https://yourwebsite.com/img/living-room.webp"],
+    images: ["https://online-shop-chi-flame.vercel.app/img/living-room.webp"],
   },
 };
 

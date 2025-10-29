@@ -15,4 +15,14 @@ export type SessionResponse = {
   refreshToken?: string;
 };
 
+export type RequestResetEmail={
+    email: string;
+}
+export type ResetPassword = {
+  token:string,
+  password: string;
+}
+
+
+
 export type ApiError = AxiosError<{ error: string }>

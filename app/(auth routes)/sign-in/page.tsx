@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { useAuthStore } from "@/lib/store/authStore";
 
@@ -10,9 +10,10 @@ import { ApiError, LoginRequest } from "@/types/auth";
 import Link from "next/link";
 
 export default function SignInPage() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
+  const redirectUrl = searchParams.get("redirect");
 
   const handleSubmit = async (formData: FormData) => {
     try {
@@ -20,7 +21,7 @@ export default function SignInPage() {
       const res = await login(formValues);
       if (res) {
         setUser(res);
-        router.push("/profile");
+        window.location.href = redirectUrl || "/profile";
       } else {
         setError("Invalid email or password");
       }
@@ -32,7 +33,9 @@ export default function SignInPage() {
       );
     }
   };
-
+  const signUpHref = redirectUrl
+    ? `/sign-up?redirect=${redirectUrl}`
+    : "/sign-up";
   return (
     <section className="min-h-screen flex items-center justify-center bg-linear-to-r from-[#f3f3f3] to-[#e5e5e5]">
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md mx-4">
@@ -75,7 +78,7 @@ export default function SignInPage() {
             />
           </div>
           {error && (
-            <p className="text-3xl font-bold text-gray-800 mb-6 text-center">
+            <p className="text-center p-2 bg-red-100 text-red-700 rounded-md text-sm">
               {error}
             </p>
           )}
@@ -92,10 +95,21 @@ export default function SignInPage() {
           <p className="text-gray-600 text-sm">
             Don’t have an account?{" "}
             <Link
-              href="/sign-up"
+              href={signUpHref}
               className="text-red-500 hover:underline font-medium"
             >
               Sign Up
+            </Link>
+          </p>
+        </div>
+        <div className="text-center mt-6">
+          <p className="text-gray-600 text-sm">
+            Forget password?{" "}
+            <Link
+              href="/requestResetEmail"
+              className="text-red-500 hover:underline font-medium"
+            >
+              Reset password
             </Link>
           </p>
         </div>

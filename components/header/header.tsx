@@ -1,8 +1,10 @@
 "use client";
 
+import CartFavoritesCounter from "../CartFavoritesCounter/CartFavoritesCounter";
 import { useState } from "react";
 import { HouseHeart, ShoppingBasket, User, Menu, X } from "lucide-react";
 import Link from "next/link";
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -35,16 +37,26 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <User className="w-6 h-6 text-red-500" />
-            <Link href="/profile" className="font-bold hover:text-gray-400">
+            <Link href="/favorites" className="font-bold hover:text-gray-400">
               My Account
             </Link>
           </div>
+          
+          <Link
+            href="/sign-up"
+            className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
+          >
+            Sign Up
+          </Link>
+
           <Link
             href="/basket"
             className="bg-gray-300 hover:bg-gray-400 w-10 px-2 py-2 rounded-md flex items-center justify-center"
           >
             <ShoppingBasket className="w-6 h-6 text-red-500" />
           </Link>
+
+          <CartFavoritesCounter />
         </div>
 
         {/* Burger Menu (Mobile) */}
@@ -77,6 +89,7 @@ export default function Header() {
             <HouseHeart className="w-8 h-8 text-red-500" />
             <span className="text-xl font-bold">Cozy Corner</span>
           </Link>
+
           <div className="flex flex-col gap-8 mb-12">
             {/* Mobile Links */}
             <Link
@@ -109,17 +122,25 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Account & Basket */}
-          <div className="flex items-center space-x-2 mb-12">
+          {/* Account & Sign Up */}
+          <div className="flex items-center space-x-2 mb-6">
             <User className="w-6 h-6 text-red-500" />
             <Link
-              href="/profile"
+              href="/favorites"
               className="font-bold text-xl hover:text-gray-400"
               onClick={() => setMenuOpen(false)}
             >
               My Account
             </Link>
           </div>
+
+          <Link
+            href="/sign-up"
+            className="border border-gray-300 px-[15px] py-[8px] rounded-md font-semibold text-lg hover:text-gray-700 bg-gray-300 hover:bg-gray-400 inline-block mb-6"
+            onClick={() => setMenuOpen(false)}
+          >
+            Sign Up
+          </Link>
 
           <Link
             href="/basket"
@@ -129,6 +150,8 @@ export default function Header() {
           >
             <ShoppingBasket className="w-6 h-6 text-red-500" />
           </Link>
+
+          <CartFavoritesCounter />
         </div>
       </div>
     </header>

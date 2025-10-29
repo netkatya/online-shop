@@ -1,9 +1,9 @@
 "use client";
 
+import { useShopStore } from "@/lib/api/store/useShopStore";
 import { Product } from "@/types/products";
 import { Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
-
 import { useRouter } from "next/navigation";
 
 interface ProductsGridInt {
@@ -11,6 +11,17 @@ interface ProductsGridInt {
 }
 
 export default function ProductsGrid({ products }: ProductsGridInt) {
+  // Store methods and state
+  const addToFavorites = useShopStore((state) => state.addToFavorites);
+  const removeFromFavorites = useShopStore(
+    (state) => state.removeFromFavorites
+  );
+  const isFavorite = useShopStore((state) => state.isFavorite);
+
+  const addToCart = useShopStore((state) => state.addToCart);
+  const removeFromCart = useShopStore((state) => state.removeFromCart);
+  const isInCart = useShopStore((state) => state.isInCart);
+
   const router = useRouter();
 
   return (
@@ -37,7 +48,6 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
               <h2 className="text-lg font-semibold text-gray-800 h-[40px]">
                 {product.name}
               </h2>
-
               <p className="text-red-500 font-bold mt-2">£{product.price}</p>
               <p className="text-[14px] text-gray-500 mt-2">
                 {product.description}
@@ -48,25 +58,53 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
           {/* Buttons */}
           <div className="p-4 flex gap-4 justify-center">
             <button
-              aria-label="add to favourites"
+              aria-label={
+                isFavorite(product._id)
+                  ? "Remove from favourites"
+                  : "Add to favourites"
+              }
               className="flex justify-center items-center h-[30px] w-[80px] rounded-lg 
-              border border-red-400 bg-gradient-to-b from-white to-red-50 
-              shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
-              active:scale-95 transition-all duration-200"
-              onClick={() => console.log("Add to favorites:", product._id)}
+                border border-red-400 bg-gradient-to-b from-white to-red-50 
+                shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
+                active:scale-95 transition-all duration-200"
+              onClick={(e) => {
+                e.stopPropagation();
+                isFavorite(product._id)
+                  ? removeFromFavorites(product._id)
+                  : addToFavorites(product);
+              }}
             >
-              <Heart className="w-5 h-5 text-red-500" />
+              <Heart
+                className={`w-5 h-5 transition ${
+                  isFavorite(product._id)
+                    ? "fill-red-500 text-red-500"
+                    : "text-red-500"
+                }`}
+              />
             </button>
 
             <button
-              aria-label="add to basket"
+              aria-label={
+                isInCart(product._id) ? "Remove from basket" : "Add to basket"
+              }
               className="flex justify-center items-center h-[30px] w-[80px] rounded-lg 
-              border border-red-400 bg-gradient-to-b from-white to-red-50 
-              shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
-              active:scale-95 transition-all duration-200"
-              onClick={() => console.log("Add to cart:", product._id)}
+                border border-red-400 bg-gradient-to-b from-white to-red-50 
+                shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
+                active:scale-95 transition-all duration-200"
+              onClick={(e) => {
+                e.stopPropagation();
+                isInCart(product._id)
+                  ? removeFromCart(product._id)
+                  : addToCart(product);
+              }}
             >
-              <ShoppingCart className="w-5 h-5 text-gray-800" />
+              <ShoppingCart
+                className={`w-5 h-5 transition ${
+                  isInCart(product._id)
+                    ? "fill-green-500 text-green-500"
+                    : "text-gray-800"
+                }`}
+              />
             </button>
           </div>
         </div>

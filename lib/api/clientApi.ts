@@ -34,10 +34,10 @@ export async function fetchProductsClient(
       params.sortBy = "price";
       params.sortOrder = "asc";
     } else if (sortBy === "priceDesc") {
-      params.sortBy = "price"; 
+      params.sortBy = "price";
       params.sortOrder = "desc";
     } else {
-      params.sortBy = "_id"; 
+      params.sortBy = "_id";
       params.sortOrder = "asc";
     }
 
@@ -72,6 +72,7 @@ export async function fetchProductById(id: string): Promise<Product> {
     throw new Error("Fetching product failed");
   }
 }
+
 export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>("/auth/register", data);
   return res.data;

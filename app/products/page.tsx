@@ -7,9 +7,25 @@ import ProductsClient from "./Products.client";
 import { fetchProductsClient } from "@/lib/api/clientApi";
 async function ProductsPage() {
   const queryClient = new QueryClient();
+  const initialSearch = "";
+  const initialPage = 1;
+  const initialCategory = "all";
+  const initialSortBy = "name";
   await queryClient.prefetchQuery({
-    queryKey: ["products"],
-    queryFn: () => fetchProductsClient("", 1, 8, "All"),
+    queryKey: [
+      "products",
+      initialSearch,
+      initialPage,
+      initialCategory,
+      initialSortBy,
+    ],
+    queryFn: () =>
+      fetchProductsClient(
+        initialSearch,
+        initialPage,
+        initialCategory,
+        initialSortBy
+      ),
   });
   return (
     <section className="min-h-screen py-10 bg-gray-100">

@@ -1,8 +1,7 @@
 import { getCategories } from "@/lib/api/clientApi";
-import { SetStateAction } from "react";
 
 interface CategoriesInt {
-  setSelectedCategory: (value: SetStateAction<string>) => void;
+  setSelectedCategory: (category: string) => void;
   selectedCategory: string;
 }
 

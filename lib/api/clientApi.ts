@@ -1,7 +1,7 @@
 import { Product } from "@/types/products";
 import { isAxiosError } from "axios";
 import { nextServer } from "./api";
-import { LoginRequest, RegisterRequest } from "@/types/auth";
+import { LoginRequest, RegisterRequest, RequestResetEmail, ResetPassword } from "@/types/auth";
 import { User } from "@/types/user";
 
 export interface FetchProductsResponse {
@@ -63,3 +63,11 @@ export const login = async (data: LoginRequest) => {
     const res = await nextServer.post<User>('/auth/login', data)
     return res.data
 }
+export const requestResetEmail = async (data: RequestResetEmail) => {
+    const res = await nextServer.post<User>('/auth/requestResetEmail', data)
+    return res.data
+}
+export const resetPassword = async (data: ResetPassword) => {
+     const res = await nextServer.post<User>('/auth/', data)
+    return res.data
+ }

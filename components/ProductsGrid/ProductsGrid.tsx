@@ -1,3 +1,6 @@
+"use client";
+
+import { useShopStore } from "@/lib/api/store/useShopStore";
 import { Product } from "@/types/products";
 import { Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
@@ -8,6 +11,17 @@ interface ProductsGridInt {
 }
 
 export default function ProductsGrid({ products }: ProductsGridInt) {
+  // We only get the necessary methods and state from the store
+  const addToFavorites = useShopStore((state) => state.addToFavorites);
+  const removeFromFavorites = useShopStore(
+    (state) => state.removeFromFavorites
+  );
+  const isFavorite = useShopStore((state) => state.isFavorite);
+
+  const addToCart = useShopStore((state) => state.addToCart);
+  const removeFromCart = useShopStore((state) => state.removeFromCart);
+  const isInCart = useShopStore((state) => state.isInCart);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       {products.map((product) => (
@@ -43,24 +57,61 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
               </Link>
 
               <div className="flex items-center gap-2">
+                {/* ❤️ Favorites */}
                 <button
                   className="flex justify-center items-center h-[30px] w-[60px] rounded-lg 
                border border-red-400 bg-gradient-to-b from-white to-red-50 
                shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
                active:scale-95 transition-all duration-200"
-                  onClick={() => console.log("Add to favorites:", product._id)}
+                  // onClick={() => console.log("Add to favorites:", product._id)}
+                  onClick={() =>
+                    isFavorite(product._id)
+                      ? removeFromFavorites(product._id)
+                      : addToFavorites(product)
+                  }
+                  aria-label={
+                    isFavorite(product._id)
+                      ? "Remove from favorites"
+                      : "Add to favorites"
+                  }
                 >
-                  <Heart className="w-5 h-5 text-red-500" />
+                  {/* <Heart 
+                  className="w-5 h-5 text-red-500" /> */}
+                  <Heart
+                    size={22}
+                    className={`transition ${
+                      isFavorite(product._id)
+                        ? "fill-pink-500 text-pink-500"
+                        : "text-gray-400"
+                    }`}
+                  />
                 </button>
 
+                {/* 🛒 Cart */}
                 <button
                   className="flex justify-center items-center h-[30px] w-[60px] rounded-lg 
                border border-red-400 bg-gradient-to-b from-white to-red-50 
                shadow-md hover:shadow-lg hover:from-red-50 hover:to-white
                active:scale-95 transition-all duration-200"
-                  onClick={() => console.log("Add to cart:", product._id)}
+                  // onClick={() => console.log("Add to cart:", product._id)}
+                  onClick={() =>
+                    isInCart(product._id)
+                      ? removeFromCart(product._id)
+                      : addToCart(product)
+                  }
+                  aria-label={
+                    isInCart(product._id) ? "Remove from cart" : "Add to cart"
+                  }
                 >
-                  <ShoppingCart className="w-5 h-5 text-gray-800" />
+                  {/* <ShoppingCart className="w-5 h-5 text-gray-800" /> */}
+                  <ShoppingCart
+                    size={22}
+                    className={`transition ${
+                      isInCart(product._id)
+                        ? "fill-green-500 text-green-500"
+                        : "text-gray-400"
+                    }`}
+                  />
                 </button>
               </div>
             </div>

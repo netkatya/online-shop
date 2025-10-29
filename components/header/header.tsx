@@ -1,5 +1,6 @@
 import { HouseHeart, ShoppingBasket, User } from "lucide-react";
 import Link from "next/link";
+import CartFavoritesCounter from "../CartFavoritesCounter/CartFavoritesCounter";
 
 export default function Header() {
   return (
@@ -45,7 +46,7 @@ export default function Header() {
         </ul> */}
         <div className="flex items-center space-x-2">
           <User className="w-6 h-6 text-red-500" />
-          <Link href="/account" className="font-bold hover:text-gray-400">
+          <Link href="/favorites" className="font-bold hover:text-gray-400">
             My Account
           </Link>
         </div>
@@ -57,6 +58,7 @@ export default function Header() {
             <ShoppingBasket className="w-6 h-6 text-red-500" />
           </Link>
         </div>
+        <CartFavoritesCounter />
       </div>
     </header>
   );

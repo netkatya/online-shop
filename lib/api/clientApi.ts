@@ -53,3 +53,4 @@ export async function fetchProductById(id: string): Promise<Product> {
     throw new Error("Fetching product failed");
   }
 }
+

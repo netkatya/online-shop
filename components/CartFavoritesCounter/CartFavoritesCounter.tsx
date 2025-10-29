@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function CartFavoritesCounter() {
   const favorites = useShopStore((state) => state.favorites);
-  const getCartItemsCount = useShopStore((state) => state.getCartQuantity);
+  const getTotalCartItems = useShopStore((state) => state.getTotalCartItems);
 
   return (
     <div className="flex items-center gap-4">
@@ -19,7 +19,8 @@ export default function CartFavoritesCounter() {
         {favorites.length > 0 && (
           <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
             {favorites.length}
-          </span>        )}
+          </span>
+        )}
       </Link>
 
       {/* Cart */}
@@ -28,9 +29,9 @@ export default function CartFavoritesCounter() {
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
       >
         <ShoppingCart className="w-6 h-6 text-gray-700" />
-        {getCartItemsCount() > 0 && (
+        {getTotalCartItems() > 0 && (
           <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-            {getCartItemsCount()}
+            {getTotalCartItems()}
           </span>
         )}
       </Link>

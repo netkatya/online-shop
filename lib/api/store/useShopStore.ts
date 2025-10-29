@@ -19,6 +19,7 @@ interface ShopStore {
   isInCart: (productId: string) => boolean;
   updateCartQuantity: (productId: string, quantity: number) => void;
   getCartQuantity: (productId: string) => number;
+  getTotalCartItems: () => number; // ✅ НОВА ФУНКЦІЯ
   getCartTotal: () => number;
   clearCart: () => void;
 }
@@ -85,6 +86,10 @@ export const useShopStore = create<ShopStore>()(
 
       getCartQuantity: (productId) =>
         get().cart.find((p) => p._id === productId)?.quantity || 0,
+
+      // ✅ НОВА ФУНКЦІЯ: отримати загальну кількість товарів у кошику
+      getTotalCartItems: () =>
+        get().cart.reduce((total, item) => total + (item.quantity || 1), 0),
 
       getCartTotal: () =>
         get().cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0),

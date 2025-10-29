@@ -62,7 +62,8 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gray-400 text-center py-4 text-sm text-gray-600">
-        © {new Date().getFullYear()} Cozy Corner. All rights reserved.
+        {new Date().getFullYear()} Cozy Corner. Non-commercial educational
+        project. All images belong to their respective owners.
       </div>
     </footer>
   );

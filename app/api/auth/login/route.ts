@@ -6,25 +6,26 @@ import { logErrorResponse } from "../../_utils/utils";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+
     const apiRes = await api.post("auth/login", body);
+
+
     const setCookie = apiRes.headers["set-cookie"];
 
     if (setCookie) {
-      // 1. Создаем ответ с данными JSON
       const response = NextResponse.json(apiRes.data, {
         status: apiRes.status,
       });
 
-      // 2. Копируем ВСЕ заголовки Set-Cookie из ответа API в наш ответ
       const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
       for (const cookieStr of cookieArray) {
         response.headers.append("Set-Cookie", cookieStr);
       }
 
-      return response; // 3. Отправляем ответ клиенту
+      return response;
     }
 
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json(apiRes.data, { status: apiRes.status });
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);

@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import { Suspense } from "react";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,11 +56,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TanStackProvider>
-          <Header />
-          {children}
-          <Footer />
-        </TanStackProvider>
+        <Suspense fallback={<div>Loading...</div>}>
+          <TanStackProvider>
+            <AuthProvider>
+              <Header />
+              {children}
+              <Footer />
+            </AuthProvider>
+          </TanStackProvider>
+        </Suspense>
       </body>
     </html>
   );

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { HouseHeart, ShoppingBasket, User, Menu, X } from "lucide-react";
 import Link from "next/link";
-
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -36,7 +35,7 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <User className="w-6 h-6 text-red-500" />
-            <Link href="/account" className="font-bold hover:text-gray-400">
+            <Link href="/profile" className="font-bold hover:text-gray-400">
               My Account
             </Link>
           </div>
@@ -114,7 +113,7 @@ export default function Header() {
           <div className="flex items-center space-x-2 mb-12">
             <User className="w-6 h-6 text-red-500" />
             <Link
-              href="/account"
+              href="/profile"
               className="font-bold text-xl hover:text-gray-400"
               onClick={() => setMenuOpen(false)}
             >

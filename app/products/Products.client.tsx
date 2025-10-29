@@ -7,7 +7,7 @@ import Sorting from "@/components/Sorting/Sorting";
 import Categories from "@/components/Categories/Categories";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
-import SearchBox from "@/components/SearchBox/SearchBox";
+// import SearchBox from "@/components/SearchBox/SearchBox";
 export default function ProductsClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"priceAsc" | "priceDesc" | "name">(
@@ -17,39 +17,39 @@ export default function ProductsClient() {
   const [search, setSearch] = useState("");
   const [debouncedSearchedQuery] = useDebounce(search, 500);
 
-  const perPage = 8;
-
   const { data, isLoading, isError } = useQuery({
     queryKey: [
       "products",
       debouncedSearchedQuery,
       currentPage,
-      perPage,
       selectedCategory,
+      sortBy,
     ],
     queryFn: () =>
       fetchProductsClient(
         debouncedSearchedQuery,
         currentPage,
-        perPage,
-        selectedCategory
+        selectedCategory,
+        sortBy
       ),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
-
-  // Локальная сортировка по цене или имени
-  const sortedProducts = [...(data?.data ?? [])].sort((a, b) => {
-    if (sortBy === "priceAsc") return a.price - b.price;
-    if (sortBy === "priceDesc") return b.price - a.price;
-    return a.name.localeCompare(b.name);
-  });
+  const products = data?.data ?? [];
 
   const totalPages = data?.totalPages || 0;
 
-  const handleChange = (value: string) => {
+  // const handleChange = (value: string) => {
+  //   setCurrentPage(1);
+  //   setSearch(value);
+  // };
+  const handleChangeCategory = (category: string) => {
     setCurrentPage(1);
-    setSearch(value);
+    setSelectedCategory(category);
+  };
+  const handleChangeSorting = (sortBy: "priceAsc" | "priceDesc" | "name") => {
+    setCurrentPage(1);
+    setSortBy(sortBy);
   };
 
   return (
@@ -57,15 +57,12 @@ export default function ProductsClient() {
       <div className="flex flex-col md:flex-row md:justify-between items-center mb-6 gap-4">
         {/* Поиск
         <SearchBox value={search} onChange={handleChange} /> */}
-        {/* Выпадающий список категорий */}
         <Categories
           selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
+          setSelectedCategory={handleChangeCategory}
         />
-        {/* Сортировка */}
-        <Sorting setSortBy={setSortBy} sortBy={sortBy} />
+        <Sorting setSortBy={handleChangeSorting} sortBy={sortBy} />
       </div>
-      {/* Сетка товаров */}
       {isError && (
         <p className="text-center text-gray-500 mt-10">
           Something went wrong...
@@ -74,9 +71,8 @@ export default function ProductsClient() {
       {isLoading ? (
         <p className="text-center text-gray-500 mt-10">Loading products...</p>
       ) : (
-        <ProductsGrid products={sortedProducts} />
+        <ProductsGrid products={products} />
       )}
-      {/* Пагинация */}
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}

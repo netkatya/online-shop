@@ -1,6 +1,13 @@
 import { Product } from "@/types/products";
 import { isAxiosError } from "axios";
 import { nextServer } from "./api";
+import {
+  LoginRequest,
+  RegisterRequest,
+  RequestResetEmail,
+  ResetPassword,
+} from "@/types/auth";
+import { User } from "@/types/user";
 
 export interface FetchProductsResponse {
   data: Product[];
@@ -10,9 +17,10 @@ export interface FetchProductsResponse {
 export async function fetchProductsClient(
   search = "",
   page = 1,
-  perPage = 8,
-  category?: string
+  category?: string,
+  sortBy: "priceAsc" | "priceDesc" | "name" = "name"
 ): Promise<FetchProductsResponse> {
+  const perPage = 8;
   try {
     const params: Record<string, string> = {
       page: String(page),
@@ -21,6 +29,17 @@ export async function fetchProductsClient(
     if (search) params.search = search;
     if (category && category.toLowerCase() !== "all")
       params.category = category;
+
+    if (sortBy === "priceAsc") {
+      params.sortBy = "price";
+      params.sortOrder = "asc";
+    } else if (sortBy === "priceDesc") {
+      params.sortBy = "price";
+      params.sortOrder = "desc";
+    } else {
+      params.sortBy = "_id";
+      params.sortOrder = "asc";
+    }
 
     const { data } = await nextServer.get<FetchProductsResponse>("/products", {
       params,
@@ -54,3 +73,23 @@ export async function fetchProductById(id: string): Promise<Product> {
   }
 }
 
+export const register = async (data: RegisterRequest) => {
+  const res = await nextServer.post<User>("/auth/register", data);
+  return res.data;
+};
+export const login = async (data: LoginRequest) => {
+  const res = await nextServer.post<User>("/auth/login", data);
+  return res.data;
+};
+export const requestResetEmail = async (data: RequestResetEmail) => {
+  const res = await nextServer.post<User>("/auth/requestResetEmail", data);
+  return res.data;
+};
+export const resetPassword = async (data: ResetPassword) => {
+  const res = await nextServer.post<User>("/auth/", data);
+  return res.data;
+};
+export const getMe = async () => {
+  const res = await nextServer.get<User>("/auth/me");
+  return res.data;
+};

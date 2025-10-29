@@ -1,8 +1,6 @@
-import { SetStateAction } from "react";
-
 interface SortingInt {
   sortBy: "name" | "priceAsc" | "priceDesc";
-  setSortBy: (value: SetStateAction<"name" | "priceAsc" | "priceDesc">) => void;
+  setSortBy: (sortBy: "priceAsc" | "priceDesc" | "name") => void;
 }
 export default function Sorting({ sortBy, setSortBy }: SortingInt) {
   return (

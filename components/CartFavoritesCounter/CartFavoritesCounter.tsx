@@ -9,14 +9,17 @@ export default function CartFavoritesCounter() {
   const [mounted, setMounted] = useState(false);
   const favorites = useShopStore((state) => state.favorites);
   const cart = useShopStore((state) => state.cart);
-  const totalCartItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+  const totalCartItems = cart.reduce(
+    (total, item) => total + (item.quantity || 1),
+    0
+  );
 
-    // Wait for component to mount on client
-    useEffect(() => {
-      setMounted(true);
-    }, []);
+  // Wait for component to mount on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-      // Prevent hydration mismatch by not showing counts until mounted
+  // Prevent hydration mismatch by not showing counts until mounted
   if (!mounted) {
     return (
       <div className="flex items-center gap-4">
@@ -41,6 +44,7 @@ export default function CartFavoritesCounter() {
       {/* Favorites */}
       <Link
         href="/favorites"
+        aria-label="Go to favourites"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
       >
         <Heart className="w-6 h-6 text-gray-700" />
@@ -54,6 +58,7 @@ export default function CartFavoritesCounter() {
       {/* Cart */}
       <Link
         href="/basket"
+        aria-label="Go to cart"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
       >
         <ShoppingCart className="w-6 h-6 text-gray-700" />

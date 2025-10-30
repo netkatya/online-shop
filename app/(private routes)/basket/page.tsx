@@ -116,7 +116,10 @@ export default function CartPage() {
                     <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
                       <button
                         onClick={() =>
-                          handleQuantityChange(item._id, (item.quantity || 1) - 1)
+                          handleQuantityChange(
+                            item._id,
+                            (item.quantity || 1) - 1
+                          )
                         }
                         disabled={(item.quantity || 1) <= 1}
                         className="p-2 hover:bg-gray-200 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed"
@@ -141,7 +144,10 @@ export default function CartPage() {
 
                       <button
                         onClick={() =>
-                          handleQuantityChange(item._id, (item.quantity || 1) + 1)
+                          handleQuantityChange(
+                            item._id,
+                            (item.quantity || 1) + 1
+                          )
                         }
                         className="p-2 hover:bg-gray-200 rounded-md transition"
                         aria-label="Increase quantity"
@@ -179,7 +185,9 @@ export default function CartPage() {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-gray-700">
                     <span>Subtotal</span>
-                    <span className="font-semibold">£{subtotal.toFixed(2)}</span>
+                    <span className="font-semibold">
+                      £{subtotal.toFixed(2)}
+                    </span>
                   </div>
 
                   <div className="flex justify-between text-gray-700">
@@ -251,9 +259,9 @@ export default function CartPage() {
                   </div>
                 </div>
               </div>
-              <button className="w-full mt-6 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition">
+              {/* <button className="w-full mt-6 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition">
                 Proceed to Checkout
-              </button>
+              </button> */}
             </div>
           </div>
         )}

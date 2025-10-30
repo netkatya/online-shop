@@ -41,21 +41,6 @@ export default function Header() {
               My Account
             </Link>
           </div>
-
-          <Link
-            href="/sign-up"
-            className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
-          >
-            Sign Up
-          </Link>
-
-          <Link
-            href="/basket"
-            className="bg-gray-300 hover:bg-gray-400 w-10 px-2 py-2 rounded-md flex items-center justify-center"
-          >
-            <ShoppingBasket className="w-6 h-6 text-red-500" />
-          </Link>
-
           <CartFavoritesCounter />
         </div>
 

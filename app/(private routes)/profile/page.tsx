@@ -12,7 +12,7 @@ export default function UserProfile({ user }: UserProfileProps) {
   return (
     <div className="min-h-screen flex justify-center bg-gray-50 px-4 py-10 md:p-[80px]">
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl flex flex-col md:flex-row overflow-hidden">
-        {/* Аватар */}
+        {/* Avatar */}
         <div className="relative w-full h-64 sm:h-80 md:h-auto md:w-1/3 flex items-center justify-center bg-gray-100">
           <Image
             src={user?.avatar || "/img/avatar.png"}
@@ -23,7 +23,7 @@ export default function UserProfile({ user }: UserProfileProps) {
           />
         </div>
 
-        {/* Информация */}
+        {/* Information */}
         <div className="w-full md:w-2/3 p-6 sm:p-10 flex flex-col justify-between">
           <div className="mb-6">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">

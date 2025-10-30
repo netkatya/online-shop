@@ -25,7 +25,7 @@ export default function CartFavoritesCounter() {
 
       {/* Cart */}
       <Link
-        href="/basket"
+        href="/cart"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
       >
         <ShoppingCart className="w-6 h-6 text-gray-700" />

@@ -37,7 +37,7 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <User className="w-6 h-6 text-red-500" />
-            <Link href="/favorites" className="font-bold hover:text-gray-400">
+            <Link href="/profile" className="font-bold hover:text-gray-400">
               My Account
             </Link>
           </div>
@@ -111,7 +111,7 @@ export default function Header() {
           <div className="flex items-center space-x-2 mb-6">
             <User className="w-6 h-6 text-red-500" />
             <Link
-              href="/favorites"
+              href="/profile"
               className="font-bold text-xl hover:text-gray-400"
               onClick={() => setMenuOpen(false)}
             >

@@ -5,12 +5,16 @@ import { Product } from "@/types/products";
 import { Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface ProductsGridInt {
   products: Product[];
 }
 
-export default function ProductsGrid({ products }: ProductsGridInt) {
+export default function ProductsGrid({ products }: ProductsGridInt) 
+{
+  const [mounted, setMounted] = useState(false);
+
   // Store methods and state
   const addToFavorites = useShopStore((state) => state.addToFavorites);
   const removeFromFavorites = useShopStore(
@@ -24,9 +28,14 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
 
   const router = useRouter();
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       {products.map((product) => (
+        
         <div
           key={product._id}
           className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition flex flex-col"

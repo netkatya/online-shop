@@ -3,10 +3,38 @@
 import { useShopStore } from "@/lib/api/store/useShopStore";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function CartFavoritesCounter() {
+  const [mounted, setMounted] = useState(false);
   const favorites = useShopStore((state) => state.favorites);
-  const getTotalCartItems = useShopStore((state) => state.getTotalCartItems);
+  const cart = useShopStore((state) => state.cart);
+  const totalCartItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+
+    // Wait for component to mount on client
+    useEffect(() => {
+      setMounted(true);
+    }, []);
+
+      // Prevent hydration mismatch by not showing counts until mounted
+  if (!mounted) {
+    return (
+      <div className="flex items-center gap-4">
+        <Link
+          href="/favorites"
+          className="relative p-2 hover:bg-gray-100 rounded-lg transition"
+        >
+          <Heart className="w-6 h-6 text-gray-700" />
+        </Link>
+        <Link
+          href="/basket"
+          className="relative p-2 hover:bg-gray-100 rounded-lg transition"
+        >
+          <ShoppingCart className="w-6 h-6 text-gray-700" />
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center gap-4">
@@ -25,13 +53,13 @@ export default function CartFavoritesCounter() {
 
       {/* Cart */}
       <Link
-        href="/cart"
+        href="/basket"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
       >
         <ShoppingCart className="w-6 h-6 text-gray-700" />
-        {getTotalCartItems() > 0 && (
+        {totalCartItems > 0 && (
           <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-            {getTotalCartItems()}
+            {totalCartItems}
           </span>
         )}
       </Link>

@@ -1,18 +1,18 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import { Product } from '@/types/products';
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { Product } from "@/types/products";
 
 interface ShopStore {
   // State
   favorites: Product[];
   cart: Product[];
-  
+
   // Favorites
   addToFavorites: (product: Product) => void;
   removeFromFavorites: (productId: string) => void;
   isFavorite: (productId: string) => boolean;
   clearFavorites: () => void;
-  
+
   // Cart
   addToCart: (product: Product) => void;
   removeFromCart: (productId: string) => void;
@@ -92,12 +92,15 @@ export const useShopStore = create<ShopStore>()(
         get().cart.reduce((total, item) => total + (item.quantity || 1), 0),
 
       getCartTotal: () =>
-        get().cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0),
+        get().cart.reduce(
+          (sum, item) => sum + item.price * (item.quantity || 1),
+          0
+        ),
 
       clearCart: () => set({ cart: [] }),
     }),
     {
-      name: 'shop-storage',
+      name: "shop-storage",
       storage: createJSONStorage(() => localStorage),
     }
   )

@@ -99,6 +99,7 @@ export const useShopStore = create<ShopStore>()(
     {
       name: 'shop-storage',
       storage: createJSONStorage(() => localStorage),
+      // skipHydration: true,
     }
   )
 );

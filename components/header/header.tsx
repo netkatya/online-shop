@@ -41,7 +41,7 @@ export default function Header() {
               My Account
             </Link>
           </div>
-          
+
           <Link
             href="/sign-up"
             className="border border-gray-300 px-[15px] py-[5px] rounded-md font-semibold hover:text-gray-700 bg-gray-300 hover:bg-gray-400"
@@ -134,22 +134,22 @@ export default function Header() {
             </Link>
           </div>
 
-          <Link
+          {/* <Link
             href="/sign-up"
             className="border border-gray-300 px-[15px] py-[8px] rounded-md font-semibold text-lg hover:text-gray-700 bg-gray-300 hover:bg-gray-400 inline-block mb-6"
             onClick={() => setMenuOpen(false)}
           >
             Sign Up
-          </Link>
+          </Link> */}
 
-          <Link
+          {/* <Link
             href="/basket"
             className="bg-gray-300 hover:bg-gray-400 w-12 px-3 py-3 rounded-md flex items-center justify-center mt-4"
             aria-label="to basket"
             onClick={() => setMenuOpen(false)}
           >
             <ShoppingBasket className="w-6 h-6 text-red-500" />
-          </Link>
+          </Link> */}
 
           <CartFavoritesCounter />
         </div>

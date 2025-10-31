@@ -9,8 +9,6 @@ export async function GET() {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get("accessToken");
 
-  console.log("access token=", accessToken);
-
   try {
     if (!accessToken || !accessToken.value) {
       return NextResponse.json({ error: "No token" }, { status: 401 });

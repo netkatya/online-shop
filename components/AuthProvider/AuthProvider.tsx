@@ -23,7 +23,8 @@ export default function AuthProvider({
           const freshUser = await getMe();
           // 3. Якщо так, оновлюємо дані (про всяк випадок)
           setUser(freshUser);
-        } catch {
+        } catch (error) {
+          console.log(error);
           clearIsAuthenticated();
         }
       } else {

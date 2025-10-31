@@ -93,3 +93,17 @@ export const getMe = async () => {
   const res = await nextServer.get<User>("/auth/me");
   return res.data;
 };
+
+export const logout = async (): Promise<void> => {
+  await nextServer.post("/auth/logout");
+};
+
+export type UpdateRequest = {
+  email: string;
+  username: string;
+};
+
+export async function updateMe(update: Partial<UpdateRequest>): Promise<User> {
+  const { data } = await nextServer.patch<User>("/auth/me", update);
+  return data;
+}

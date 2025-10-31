@@ -1,14 +1,21 @@
 "use client";
 
-import { User } from "@/types/user";
+import { useAuthStore } from "@/lib/store/authStore";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { logout } from "@/lib/api/clientApi";
 
-interface UserProfileProps {
-  user: User;
-}
+export default function UserProfile() {
+  const router = useRouter();
+  const { user, clearIsAuthenticated } = useAuthStore();
 
-export default function UserProfile({ user }: UserProfileProps) {
+  const handleLogout = async () => {
+    await logout();
+    clearIsAuthenticated();
+    router.push("/sign-in");
+  };
+
   return (
     <div className="min-h-screen flex justify-center bg-gray-50 px-4 py-10 md:p-[80px]">
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl flex flex-col md:flex-row overflow-hidden">
@@ -19,6 +26,7 @@ export default function UserProfile({ user }: UserProfileProps) {
             alt="avatar"
             width={200}
             height={200}
+            loading="eager"
             className="object-cover rounded-full"
           />
         </div>
@@ -42,7 +50,10 @@ export default function UserProfile({ user }: UserProfileProps) {
             >
               Edit Profile
             </Link>
-            <button className="w-full sm:flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition">
+            <button
+              onClick={handleLogout}
+              className="w-full sm:flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition"
+            >
               Logout
             </button>
           </div>

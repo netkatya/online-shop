@@ -21,6 +21,8 @@ export const useAuthStore = create<AuthStore>()(
         set(() => ({ user, isAuthenticated: true, isLoading: false }));
       },
       clearIsAuthenticated: () => {
+        console.log("Clearing the userStore...");
+
         set(() => ({ user: null, isAuthenticated: false, isLoading: false }));
       },
       setLoading: (isLoading: boolean) => {
@@ -31,5 +33,13 @@ export const useAuthStore = create<AuthStore>()(
       name: "auth-storage",
       storage: createJSONStorage(() => localStorage),
     }
+    // {
+    //   name: "auth-storage",
+    //   partialize: (state) => ({
+    //     isAuthenticated: state.isAuthenticated,
+    //     user: state.user,
+    //     isLoading: state.isLoading,
+    //   }),
+    // }
   )
 );

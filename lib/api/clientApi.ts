@@ -107,3 +107,11 @@ export async function updateMe(update: Partial<UpdateRequest>): Promise<User> {
   const { data } = await nextServer.patch<User>("/auth/me", update);
   return data;
 }
+
+export async function updateMeAvatar(update: File): Promise<User> {
+  const dataFile = new FormData();
+  dataFile.append("avatar", update);
+
+  const { data } = await nextServer.patch<User>("/users/me/avatar", dataFile);
+  return data;
+}

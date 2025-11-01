@@ -63,16 +63,18 @@ export default function EditProfilePage() {
         <div className="relative w-full h-64 sm:h-80 md:h-auto md:w-1/3 flex items-center justify-center bg-gray-100">
           <div className="flex flex-col items-center mb-6">
             <label htmlFor="avatar" className="relative cursor-pointer group">
-              <Image
-                src={preview || "/img/avatar.png"}
-                alt="avatar"
-                width={200}
-                height={200}
-                loading="eager"
-                className="object-cover rounded-full"
-              />
+              <div className="w-40 h-40 sm:w-60 sm:h-60 rounded-full overflow-hidden">
+                <Image
+                  src={preview || "/img/avatar.png"}
+                  alt="avatar"
+                  width={200}
+                  height={200}
+                  loading="eager"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 rounded-full transition">
-                Змінити
+                Change
               </div>
             </label>
 
@@ -88,6 +90,7 @@ export default function EditProfilePage() {
         </div>
 
         {/* Information */}
+        <div></div>
         <form
           onSubmit={handleSubmit}
           className="w-full md:w-2/3 p-6 sm:p-10 flex flex-col justify-between"

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-[650px]">
+    <section className="relative w-full h-[650px] 2xl:h-[1000px]">
       <div className="absolute inset-0 bg-[url('/img/living-room.webp')] bg-cover bg-center"></div>
 
       <div className="absolute inset-0 bg-black/50"></div>

@@ -21,20 +21,21 @@ export default function UserProfile() {
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl flex flex-col md:flex-row overflow-hidden">
         {/* Avatar */}
         <div className="relative w-full h-64 sm:h-80 md:h-auto md:w-1/3 flex items-center justify-center bg-gray-100">
-          <Image
-            src={user?.avatar || "/img/avatar.png"}
-            alt="avatar"
-            width={200}
-            height={200}
-            loading="eager"
-            className="object-cover rounded-full"
-          />
+          <div className="w-40 h-40 sm:w-60 sm:h-60 rounded-full overflow-hidden">
+            <Image
+              src={user?.avatar || "/img/avatar.png"}
+              alt="avatar"
+              width={200}
+              height={200}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Information */}
         <div className="w-full md:w-2/3 p-6 sm:p-10 flex flex-col justify-between">
           <div className="mb-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 md:pt-24 mb-4">
               {user?.username}
             </h1>
 

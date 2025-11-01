@@ -13,6 +13,7 @@ export default function CartFavoritesCounter() {
     (total, item) => total + (item.quantity || 1),
     0
   );
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Wait for component to mount on client
   useEffect(() => {
@@ -46,6 +47,7 @@ export default function CartFavoritesCounter() {
         href="/favorites"
         aria-label="Go to favourites"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
+        onClick={() => setMenuOpen(false)}
       >
         <Heart className="w-6 h-6 text-gray-700" />
         {favorites.length > 0 && (

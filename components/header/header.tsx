@@ -118,7 +118,7 @@ export default function Header() {
               My Account
             </Link>
           </div>
-          <CartFavoritesCounter />
+          <CartFavoritesCounter closeMenu={() => setMenuOpen(false)} />
         </div>
       </div>
     </header>

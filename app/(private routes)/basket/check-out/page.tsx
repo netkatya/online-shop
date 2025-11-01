@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useShopStore } from "@/lib/api/store/useShopStore";
 
 export default function Checkout() {
   const [success, setSuccess] = useState(false);
+  const clearCart = useShopStore((state) => state.clearCart);
 
   const handlePayment = (e: React.FormEvent) => {
     e.preventDefault();
+
+    clearCart();
+
     setSuccess(true);
   };
 

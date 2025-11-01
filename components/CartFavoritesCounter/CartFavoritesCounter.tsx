@@ -5,7 +5,11 @@ import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function CartFavoritesCounter() {
+export default function CartFavoritesCounter({
+  closeMenu,
+}: {
+  closeMenu?: () => void;
+}) {
   const [mounted, setMounted] = useState(false);
   const favorites = useShopStore((state) => state.favorites);
   const cart = useShopStore((state) => state.cart);
@@ -13,7 +17,6 @@ export default function CartFavoritesCounter() {
     (total, item) => total + (item.quantity || 1),
     0
   );
-  const [menuOpen, setMenuOpen] = useState(false);
 
   // Wait for component to mount on client
   useEffect(() => {
@@ -47,7 +50,7 @@ export default function CartFavoritesCounter() {
         href="/favorites"
         aria-label="Go to favourites"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
-        onClick={() => setMenuOpen(false)}
+        onClick={() => closeMenu && closeMenu()}
       >
         <Heart className="w-6 h-6 text-gray-700" />
         {favorites.length > 0 && (
@@ -62,6 +65,7 @@ export default function CartFavoritesCounter() {
         href="/basket"
         aria-label="Go to cart"
         className="relative p-2 hover:bg-gray-100 rounded-lg transition"
+        onClick={() => closeMenu && closeMenu()}
       >
         <ShoppingCart className="w-6 h-6 text-gray-700" />
         {totalCartItems > 0 && (

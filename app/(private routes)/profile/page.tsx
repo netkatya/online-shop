@@ -21,13 +21,28 @@ export default function UserProfile() {
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl flex flex-col md:flex-row overflow-hidden">
         {/* Avatar */}
         <div className="relative w-full h-64 sm:h-80 md:h-auto md:w-1/3 flex items-center justify-center bg-gray-100">
-          <div className="w-40 h-40 sm:w-60 sm:h-60 rounded-full overflow-hidden">
-            <Image
-              src={user?.avatar || "/img/avatar.png"}
-              alt="avatar"
-              width={200}
-              height={200}
-              className="w-full h-full object-cover"
+          <div className="flex flex-col items-center mb-6">
+            <label className="relative cursor-pointer group">
+              <div className="w-40 h-40 sm:w-60 sm:h-60 rounded-full overflow-hidden">
+                <Image
+                  src={user?.avatar || "/img/avatar.png"}
+                  alt="avatar"
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-sm opacity-0 rounded-full transition">
+                Change
+              </div>
+            </label>
+            <input
+              id="avatar"
+              name="avatar"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              readOnly
             />
           </div>
         </div>

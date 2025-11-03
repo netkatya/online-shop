@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/store/authStore";
 import { getTelegramLinked } from "@/lib/api/clientApi";
+import { SiTelegram } from "react-icons/si";
 
 interface ConnectTelegramButtonProps {
   userId: string;
@@ -38,31 +39,40 @@ const ConnectTelegramButton = ({
     userId
   )}`;
 
-  if (loading) return <p>Завантаження...</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center py-6">
+        <p>Loading...</p>
+      </div>
+    );
 
   return (
-    <div className="flex flex-col items-center gap-4 p-6 bg-white shadow-lg rounded-2xl max-w-md mx-auto text-center">
-      <h2 className="text-2xl font-semibold">Підключення Telegram 📲</h2>
+    <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl p-4 md:p-6 flex flex-col items-center gap-4 mx-auto text-center">
+      <h2 className="text-2xl font-extrabold text-gray-900 mb-2">
+        Connect Your Telegram
+      </h2>
 
       {isLinked ? (
-        <div className="text-green-600 text-lg font-medium">
-          ✅ Telegram підключено!
+        <div className="text-green-600 text-lg font-semibold mt-4">
+          ✅ Telegram Connected!
         </div>
       ) : (
         <>
-          <p className="text-gray-600">
-            Натисни кнопку, щоб підключити свій Telegram.
+          <p className="text-gray-700 text-lg">
+            Click the button below to connect your Telegram account.
           </p>
           <a
             href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#0088cc] text-white py-3 px-6 rounded-full text-lg hover:bg-[#007ab8] transition"
+            className="flex gap-2  px-6 py-3 bg-blue-600 text-white text-lg rounded-full font-semibold hover:bg-blue-500 transition"
           >
-            Відкрити бота
+            <SiTelegram className="w-8 h-8 fill-white m-auto" />
+            Open Bot
           </a>
-          <p className="text-sm text-gray-500">
-            Після запуску бота статус оновиться автоматично.
+          <p className="text-sm text-gray-500 mt-2">
+            After starting the bot, the connection status will update
+            automatically.
           </p>
         </>
       )}

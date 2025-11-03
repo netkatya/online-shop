@@ -61,7 +61,7 @@ export default function EditProfilePage() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center bg-gray-50 px-4 py-10 md:p-[80px]">
+    <div className="min-h-screen flex justify-center bg-gray-50 px-4 py-10 md:p-[40px]">
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl flex flex-col md:flex-row overflow-hidden">
         {/* Avatar */}
         <div className="relative w-full h-64 sm:h-80 md:h-auto md:w-1/3 flex items-center justify-center bg-gray-100">
@@ -97,9 +97,9 @@ export default function EditProfilePage() {
         <div></div>
         <form
           onSubmit={handleSubmit}
-          className="w-full md:w-2/3 p-6 sm:p-10 flex flex-col justify-between"
+          className="w-full md:w-2/3 p-6 sm:p-6 flex flex-col justify-between"
         >
-          <div className="mb-6">
+          <div>
             <label className="mb-6 font-bold  text-gray-700" htmlFor="username">
               Username:
             </label>
@@ -107,7 +107,7 @@ export default function EditProfilePage() {
               id="username"
               name="username"
               type="text"
-              className="w-full mt-2 mb-6 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full mt-2 mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.username}
               onChange={handleChange}
               required
@@ -132,7 +132,7 @@ export default function EditProfilePage() {
             botUsername={TELEGRAM_BOT_USERNAME}
           />
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               type="submit"
               className="w-full  bg-red-500 text-white sm:flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-red-600 transition"

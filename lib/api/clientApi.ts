@@ -77,18 +77,22 @@ export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>("/auth/register", data);
   return res.data;
 };
+
 export const login = async (data: LoginRequest) => {
   const res = await nextServer.post<User>("/auth/login", data);
   return res.data;
 };
+
 export const requestResetEmail = async (data: RequestResetEmail) => {
   const res = await nextServer.post<User>("/auth/requestResetEmail", data);
   return res.data;
 };
+
 export const resetPassword = async (data: ResetPassword) => {
-  const res = await nextServer.post<User>("/auth/", data);
+  const res = await nextServer.post<User>("/auth/resetPassword", data);
   return res.data;
 };
+
 export const getMe = async () => {
   const res = await nextServer.get<User>("/auth/me");
   return res.data;
@@ -114,4 +118,22 @@ export async function updateMeAvatar(update: File): Promise<User> {
 
   const { data } = await nextServer.patch<User>("/users/me/avatar", dataFile);
   return data;
+}
+
+export async function getTelegramLinked(
+  id: string
+): Promise<{ isLinked: boolean }> {
+  try {
+    const res = await nextServer.get<{ isLinked: boolean }>(
+      `/users/:${id}/telegram-status`
+    );
+    return res.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.message || "Getting Telegram linked status failed"
+      );
+    }
+    throw new Error("Getting Telegram linked status failed");
+  }
 }

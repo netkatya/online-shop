@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { updateMe, updateMeAvatar } from "@/lib/api/clientApi";
 import { User } from "@/types/user";
 import { useState } from "react";
+import ConnectTelegramButton from "@/components/ConnectTelegramButton/ConnectTelegramButton";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -19,6 +20,9 @@ export default function EditProfilePage() {
 
   const [avatar, setAvatar] = useState<File | null>(null);
   const [preview, setPreview] = useState(user?.avatar || "");
+
+  const TELEGRAM_BOT_USERNAME =
+    process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME || "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -122,6 +126,11 @@ export default function EditProfilePage() {
               required
             />
           </div>
+
+          <ConnectTelegramButton
+            userId={user.id}
+            botUsername={TELEGRAM_BOT_USERNAME}
+          />
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <button

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { createOrderNext } from "@/lib/api/orders";
 import { useShopStore } from "@/lib/api/store/useShopStore";
+import { useRouter } from "next/navigation";
 
 interface CartItem {
   _id: string;
@@ -14,10 +15,19 @@ interface CartItem {
 }
 
 export default function Checkout() {
+  const router = useRouter();
   const cart = useShopStore((state) => state.cart);
   const clearCart = useShopStore((state) => state.clearCart);
 
   const [success, setSuccess] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setTimeout(() => {
+      setToastMessage("");
+    }, 2000);
+  };
 
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +38,6 @@ export default function Checkout() {
     }
 
     try {
-      // Преобразуем CartItem в OrderItem[], quantity по умолчанию = 1
       const orderItems = cart.map((item) => ({
         productId: item._id,
         name: item.name,
@@ -37,27 +46,26 @@ export default function Checkout() {
         image: item.image,
       }));
 
-      // Вычисляем общую сумму
       const totalPrice = cart.reduce(
         (sum, item) => sum + item.price * (item.quantity || 1),
         0
       );
 
-      // Отправляем заказ на сервер
       const newOrder = await createOrderNext(orderItems, totalPrice);
       console.log("Order created:", newOrder);
 
-      // Очистка корзины
       clearCart();
 
-      // Показать сообщение об успешной оплате
       setSuccess(true);
     } catch (error: any) {
       console.error(
         "Error creating order:",
         error.response?.data || error.message || error
       );
-      alert("Error creating order. Please try again.");
+      showToast("Please sign in to continue");
+      setTimeout(() => {
+        router.push("/sign-in");
+      }, 2000);
     }
   };
 
@@ -72,7 +80,7 @@ export default function Checkout() {
             Thank you for your purchase!
           </p>
           <Link
-            href="/account/orders"
+            href="/profile"
             className="px-8 py-3 bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800 transition"
           >
             Go to Orders
@@ -142,6 +150,11 @@ export default function Checkout() {
         >
           Pay
         </button>
+        {toastMessage && (
+          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white py-2 px-4 rounded-lg shadow-lg">
+            {toastMessage}
+          </div>
+        )}
       </form>
     </div>
   );

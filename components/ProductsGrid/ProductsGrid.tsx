@@ -56,7 +56,7 @@ export default function ProductsGrid({ products }: ProductsGridInt) {
                 {product.name}
               </h2>
               <p className="text-red-500 font-bold mt-2">£{product.price}</p>
-              <p className="text-[14px] text-gray-500 mt-2">
+              <p className="text-[13px] text-gray-500 mt-2">
                 {product.description}
               </p>
             </div>

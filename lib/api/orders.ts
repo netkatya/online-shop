@@ -10,6 +10,7 @@ export const createOrderNext = async (
 };
 
 export const getMyOrdersNext = async (): Promise<Order[]> => {
-  const res = await nextServer.get("/orders/my");
+  const res = await nextServer.get("/orders");
+  console.log("POST /orders URL:", nextServer.defaults.baseURL + "/orders");
   return res.data;
 };

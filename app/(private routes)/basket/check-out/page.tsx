@@ -2,36 +2,61 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useShopStore } from "@/lib/api/store/useShopStore";
 import { createOrderNext } from "@/lib/api/orders";
+import { useShopStore } from "@/lib/api/store/useShopStore";
+
+interface CartItem {
+  _id: string;
+  name: string;
+  price: number;
+  quantity?: number; // может быть undefined
+  image?: string;
+}
 
 export default function Checkout() {
-  const [success, setSuccess] = useState(false);
-  const cartItems = useShopStore((state) => state.cartItems);
+  const cart = useShopStore((state) => state.cart);
   const clearCart = useShopStore((state) => state.clearCart);
+
+  const [success, setSuccess] = useState(false);
 
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!cart || cart.length === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+
     try {
-      // 1️⃣ Calculate total price
-      const totalPrice = cartItems.reduce(
-        (sum: number, item: { price: number; quantity: number }) =>
-          sum + item.price * item.quantity,
+      // Преобразуем CartItem в OrderItem[], quantity по умолчанию = 1
+      const orderItems = cart.map((item) => ({
+        productId: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity || 1,
+        image: item.image,
+      }));
+
+      // Вычисляем общую сумму
+      const totalPrice = cart.reduce(
+        (sum, item) => sum + item.price * (item.quantity || 1),
         0
       );
 
-      // 2️⃣ Send order to backend
-      const newOrder = await createOrderNext(cartItems, totalPrice);
+      // Отправляем заказ на сервер
+      const newOrder = await createOrderNext(orderItems, totalPrice);
       console.log("Order created:", newOrder);
 
-      // 3️⃣ Clear cart
+      // Очистка корзины
       clearCart();
 
-      // 4️⃣ Show success message
+      // Показать сообщение об успешной оплате
       setSuccess(true);
     } catch (error: any) {
-      console.error("Error creating order:", error.response?.data || error);
+      console.error(
+        "Error creating order:",
+        error.response?.data || error.message || error
+      );
       alert("Error creating order. Please try again.");
     }
   };
@@ -47,10 +72,10 @@ export default function Checkout() {
             Thank you for your purchase!
           </p>
           <Link
-            href="/account/profile"
+            href="/account/orders"
             className="px-8 py-3 bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800 transition"
           >
-            Go to Profile
+            Go to Orders
           </Link>
         </div>
       </div>

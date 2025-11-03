@@ -3,7 +3,6 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { Product } from "@/types/products";
 
 interface ShopStore {
-  cartItems: any;
   // State
   favorites: Product[];
   cart: Product[];

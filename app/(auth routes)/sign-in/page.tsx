@@ -17,18 +17,22 @@ function SignInForm() {
     try {
       const formValues = Object.fromEntries(formData) as LoginRequest;
       const res = await login(formValues);
+
       if (res) {
         setUser(res);
         window.location.href = redirectUrl || "/profile";
       } else {
         setError("Invalid email or password");
       }
-    } catch (error) {
-      setError(
-        (error as ApiError).response?.data?.error ??
-          (error as ApiError).message ??
-          "Oops... some error"
-      );
+    } catch (err) {
+      const error = err as ApiError;
+      if (error.response?.status === 401) {
+        setError("Invalid email or password");
+      } else {
+        setError(
+          error.response?.data?.error ?? error.message ?? "Oops... some error"
+        );
+      }
     }
   };
 

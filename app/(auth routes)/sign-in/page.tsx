@@ -26,7 +26,7 @@ function SignInForm() {
       }
     } catch (err) {
       const error = err as ApiError;
-      if (error.response?.status === 401) {
+      if (error.response?.status === 401 || error.response?.status === 400) {
         setError("Invalid email or password");
       } else {
         setError(
@@ -46,7 +46,28 @@ function SignInForm() {
         Sign In
       </h1>
 
-      <form className="space-y-5" action={handleSubmit}>
+      <form
+        className="space-y-5"
+        action={handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+
+          const email = (formData.get("email") as string)?.trim();
+          const password = formData.get("password") as string;
+
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailRegex.test(email)) {
+            setError("Please enter a valid email address");
+            return;
+          }
+          if (!password || password.length < 8) {
+            setError("Password must be at least 8 characters long");
+            return;
+          }
+          handleSubmit(formData);
+        }}
+      >
         <div>
           <label
             htmlFor="email"

@@ -180,7 +180,11 @@ export default function UserProfile() {
             >
               {/* Items */}
               {order.items.map((item) => (
-                <div key={item.productId} className="flex gap-4 items-center">
+                <div
+                  key={item.productId}
+                  className="flex gap-4 items-center cursor-pointer"
+                  onClick={() => router.push(`/products/${item.productId}`)}
+                >
                   <Image
                     src={item.image || "/img/default-product.png"}
                     alt={item.name}

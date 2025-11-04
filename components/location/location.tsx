@@ -14,12 +14,19 @@ export default function Location() {
 
           <div className="flex items-center space-x-3">
             <Phone className="w-6 h-6 text-red-500" />
-            <p>+44 20 7946 1287</p>
+            <a href="+44 20 7946 12879" className="hover:text-red-600">
+              +44 20 7946 1287
+            </a>
           </div>
 
           <div className="flex items-center space-x-3">
             <Mail className="w-6 h-6 text-red-500" />
-            <p>info@cozycorner.co.uk</p>
+            <a
+              href="mailto:info@cozycorner.co.uk"
+              className="hover:text-red-600"
+            >
+              info@cozycorner.co.uk
+            </a>
           </div>
 
           <p className="text-gray-700 pt-4">

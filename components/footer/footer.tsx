@@ -35,7 +35,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#contact" className="hover:text-gray-600">
+              <Link href="/#location" className="hover:text-gray-600">
                 Contact
               </Link>
             </li>
@@ -51,11 +51,18 @@ export default function Footer() {
             </li>
             <li className="flex items-center space-x-3">
               <Phone className="w-5 h-5 text-red-500" />
-              <span>+44 20 7946 1287</span>
+              <a href="tel:+4420794612879" className="hover:text-gray-600">
+                +44 20 7946 1287
+              </a>
             </li>
             <li className="flex items-center space-x-3">
               <Mail className="w-5 h-5 text-red-500" />
-              <span>info@cozycorner.co.uk</span>
+              <a
+                href="mailto:info@cozycorner.co.uk"
+                className="hover:text-gray-600"
+              >
+                info@cozycorner.co.uk
+              </a>
             </li>
           </ul>
         </div>

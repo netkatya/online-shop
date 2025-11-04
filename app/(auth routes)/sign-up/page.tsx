@@ -24,12 +24,15 @@ function SignUpForm() {
       } else {
         setError("Invalid email or password");
       }
-    } catch (error) {
-      setError(
-        (error as ApiError).response?.data?.error ??
-          (error as ApiError).message ??
-          "Oops... some error"
-      );
+    } catch (err) {
+      const error = err as ApiError;
+      if (error.response?.status === 400) {
+        setError("User with this email already exists");
+      } else {
+        setError(
+          error.response?.data?.error ?? error.message ?? "Oops... some error"
+        );
+      }
     }
   };
 

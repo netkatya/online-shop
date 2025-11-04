@@ -1,7 +1,7 @@
 import { isAxiosError } from "axios";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { api } from "../../api";
+import { api } from "../../../api";
 
 type Props = {
   params: Promise<{ id: string }>;

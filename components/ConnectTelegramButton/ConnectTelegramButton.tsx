@@ -22,6 +22,7 @@ const ConnectTelegramButton = ({
     const checkStatus = async () => {
       try {
         const data = await getTelegramLinked(userId);
+
         setIsLinked(data?.isLinked);
       } catch (err) {
         console.error(err);

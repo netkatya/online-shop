@@ -125,7 +125,7 @@ export async function getTelegramLinked(
 ): Promise<{ isLinked: boolean }> {
   try {
     const res = await nextServer.get<{ isLinked: boolean }>(
-      `/users/:${id}/telegram-status`
+      `/users/${id}/telegram-status`
     );
     return res.data;
   } catch (error) {
